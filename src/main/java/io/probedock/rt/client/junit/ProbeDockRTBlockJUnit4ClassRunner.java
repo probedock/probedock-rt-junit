@@ -1,13 +1,11 @@
 package io.probedock.rt.client.junit;
 
-import io.probedock.client.core.filters.FilterDefinition;
 import io.probedock.client.junit.ProbeFilter;
 import io.probedock.rt.client.Filter;
 import org.junit.runner.manipulation.NoTestsRemainException;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 /**

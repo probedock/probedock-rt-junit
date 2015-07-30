@@ -25,7 +25,7 @@
 		<properties>
 			<property>
 				<name>listener</name>
-				<value>io.probedock.rt.client.junit.Listener</value>
+				<value>io.probedock.rt.client.junit.ProbeRTListener</value>
 			</property>
 		</properties>
 	</configuration>
@@ -47,7 +47,7 @@ the class is missing.
 		<properties>
 			<property>
 				<name>listener</name>
-				<value>io.probedock.client.junit.ProbeListener,io.probedock.rt.client.junit.Listener</value>
+				<value>io.probedock.client.junit.ProbeListener,io.probedock.rt.client.junit.ProbeRTListener</value>
 			</property>
 		</properties>
 	</configuration>

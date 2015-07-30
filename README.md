@@ -32,6 +32,28 @@
 </plugin>
 ```
 
+If you want to use Probe Dock and Probe Dock RT at the same time, you can configure several listeners in the `maven surefire`
+plugin.
+
+**Warning**: Take car of spaces, the plugin will consider them as part of class names. This will produce an error saying
+the class is missing.
+
+```xml
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>2.18.1</version>
+	<configuration>
+		<properties>
+			<property>
+				<name>listener</name>
+				<value>io.probedock.client.junit.ProbeListener,io.probedock.rt.client.junit.Listener</value>
+			</property>
+		</properties>
+	</configuration>
+</plugin>
+```
+
 3. Annotate your test classes like the following
 
 ```java

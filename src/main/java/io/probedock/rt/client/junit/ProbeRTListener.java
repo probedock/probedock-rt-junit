@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import io.probedock.client.common.config.ProbeConfigurationException;
 import io.probedock.client.junit.AbstractProbeListener;
 import io.probedock.rt.client.Configuration;
 import org.junit.runner.Description;
@@ -35,10 +36,35 @@ public class ProbeRTListener extends AbstractProbeListener {
 	 */
 	private final Set<String> testFailures = new HashSet<>();
 
-	public ProbeRTListener() {}
+	/**
+	 * Project data
+	 */
+	private String projectApiId;
+	private String projectVersion;
+
+	public ProbeRTListener() {
+		init();
+	}
 	
 	public ProbeRTListener(String category) {
 		super(category);
+		init();
+	}
+
+	private final void init() {
+		try {
+			projectApiId = configuration.getProjectApiId();
+			projectVersion = configuration.getProjectVersion();
+		}
+		catch (ProbeConfigurationException pce) {
+			LOGGER.warning(
+				"Unable to retrieve the project API ID, the probedock.yml project configuration is probably missing. " +
+				"Dummy data for project API ID and version will be used in place."
+			);
+
+			projectApiId = "Any";
+			projectVersion = "Any";
+		}
 	}
 	
 	@Override
@@ -50,8 +76,8 @@ public class ProbeRTListener extends AbstractProbeListener {
 		}
 
 		rtListener.testRunStart(
-			configuration.getProjectApiId(),
-			configuration.getProjectVersion(),
+			projectApiId,
+			projectVersion,
 			getCategory(null, null)
 		);
 	}
@@ -66,8 +92,8 @@ public class ProbeRTListener extends AbstractProbeListener {
 			
 		// Notify mini ROX that the test run is finished
 		rtListener.testRunEnd(
-			configuration.getProjectApiId(),
-			configuration.getProjectVersion(),
+			projectApiId,
+			projectVersion,
 			getCategory(null, null),
 			runEndedDate - runStartedDate
 		);
@@ -97,8 +123,8 @@ public class ProbeRTListener extends AbstractProbeListener {
 		if (!testFailures.contains(getFingerprint(description))) {
 			rtListener.testResult(
 				createTestResult(getFingerprint(description), description, getMethodAnnotation(description), getClassAnnotation(description), true, null),
-				configuration.getProjectApiId(),
-				configuration.getProjectVersion(),
+				projectApiId,
+				projectVersion,
 				getCategory(null, null)
 			);
 		}
@@ -120,8 +146,8 @@ public class ProbeRTListener extends AbstractProbeListener {
 
 		rtListener.testResult(
 			createTestResult(getFingerprint(description), description, getMethodAnnotation(description), getClassAnnotation(description), false, createAndlogStackTrace(failure)),
-			configuration.getProjectApiId(),
-			configuration.getProjectVersion(),
+			projectApiId,
+			projectVersion,
 			getCategory(null, null)
 		);
 	}

@@ -44,15 +44,6 @@ public class ProbeRTListener extends AbstractProbeListener {
     private String projectVersion;
 
     public ProbeRTListener() {
-        init();
-    }
-
-    public ProbeRTListener(String category) {
-        super(category);
-        init();
-    }
-
-    private void init() {
         try {
             projectApiId = configuration.getProjectApiId();
             projectVersion = configuration.getProjectVersion();

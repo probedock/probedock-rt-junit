@@ -1,6 +1,6 @@
 # probedock-rt-junit
 
-> Junit client for [Probe Dock RT](https://github.com/probedock/probedock-rt) written in Java.
+> Junit probe for [Probe Dock RT](https://github.com/probedock/probedock-rt) written in Java.
 
 ## Usage
 

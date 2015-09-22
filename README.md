@@ -99,7 +99,7 @@ a fallback.
 
 We have tested this probe with:
 
-* Intelij IDEA. **Note**: The runner in this IDE will log few lines of stack traces like:
+* Intelij IDEA 14. **Note**: The runner in this IDE will log few lines of stack traces like:
 
   ```bash
   Test '.Tests in Progress.testName' ignored
@@ -114,6 +114,12 @@ We have tested this probe with:
   
   This is only a logging message and the status in the IDE is really that the test is skipped. In Probe Dock RT, you should
   only see the results of the filtered tests.
+  
+  **Severe limitation**: Currently, there is no possibility to add a Junit listener. Therefore, the test results are not
+  captured by Probe Dock RT when run directly in Intelij IDEA. If Maven is used to run the tests, there is no problem.
+  
+* NetBeans 8+. As NetBeans use a Maven command to run the tests, the integration is really smooth. The tests filtered are 
+marked as skipped.
 
 ## Contributing
 

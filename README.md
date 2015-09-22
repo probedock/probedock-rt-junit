@@ -2,6 +2,10 @@
 
 > Junit probe for [Probe Dock RT](https://github.com/probedock/probedock-rt) written in Java.
 
+## Requirements
+
+* Java 6+
+
 ## Usage
 
 1. Put the following dependency in your pom.xml
@@ -54,11 +58,29 @@ the class is missing.
 </plugin>
 ```
 
-3. Annotate your test classes like the following
+3. Annotate your test classes like the following. If you have already a test runner (Spring, Android, ...) or if you
+prefer to keep the Junit runner free for anything else, take a look to the alternative way to use Probe Dock RT.
 
 ```java
 @RunWith(ProbeDockRTBlockJUnit4ClassRunner.class)
 ```
+
+## Alternative usage
+
+There is an alternative way to use Probe Dock RT. The probe provides a `@Rule` which does the filtering before evaluating
+the tests. Then, the filtering process can be done at the right time.
+
+```java
+public TestClass {
+	@Rule
+	public ProbeDockRTRule filterRule = new ProbeDockRTRule();
+	
+	...
+}
+```
+
+**Remark**: The price for this solution is that we use `Assume.assumeTrue(false)` to force the test to be skipped. Depending
+on the runner, the test can be marked as skipped, passed or failed. The default Junit runner will mark the test as skipped.
 
 ## Code usage
 
@@ -73,9 +95,25 @@ In `Probe Dock RT`, you will see `package.class.method` in place of standard key
 filtering try first by the normal `key` mechanism and if not present on the test, try to match `package.class.method` as
 a fallback.
 
-### Requirements
+## Integrations
 
-* Java 6+
+We have tested this probe with:
+
+* Intelij IDEA. **Note**: The runner in this IDE will log few lines of stack traces like:
+
+  ```bash
+  Test '.Tests in Progress.testName' ignored
+  org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+  
+  	at org.junit.Assume.assumeThat(Assume.java:95)
+  	at org.junit.Assume.assumeTrue(Assume.java:41)
+  	at io.probedock.rt.client.junit.ProbeDockRTRule$1.evaluate(ProbeDockRTRule.java:28)
+  	...
+  	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140)
+  ```
+  
+  This is only a logging message and the status in the IDE is really that the test is skipped. In Probe Dock RT, you should
+  only see the results of the filtered tests.
 
 ## Contributing
 

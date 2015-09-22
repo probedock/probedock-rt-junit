@@ -12,8 +12,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: io.probedock.client:probedock-junit:0.2.1" level="project" />
-    <orderEntry type="library" name="Maven: io.probedock.client:probedock-java:0.2.1" level="project" />
+    <orderEntry type="library" name="Maven: io.probedock.client:probedock-junit:0.2.2" level="project" />
+    <orderEntry type="library" name="Maven: io.probedock.client:probedock-java:0.2.2" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.2.7" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.12" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.12" level="project" />
@@ -25,12 +25,12 @@
     <orderEntry type="library" name="Maven: commons-configuration:commons-configuration:1.9" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: io.probedock.rt.client:probedock-rt-java:0.1.0" level="project" />
+    <orderEntry type="library" name="Maven: io.probedock.rt.client:probedock-rt-java:0.1.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.nkzawa:socket.io-client:0.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.nkzawa:engine.io-client:0.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.java-websocket:Java-WebSocket:1.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20090211" level="project" />
-    <orderEntry type="library" name="Maven: junit:junit:4.11" level="project" />
-    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: junit:junit:4.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
   </component>
 </module>

@@ -21,19 +21,22 @@
 2. Configuration with Maven Surefire
 
 ```xml
-<plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-surefire-plugin</artifactId>
-	<version>2.18.1</version>
-	<configuration>
-		<properties>
-			<property>
-				<name>listener</name>
-				<value>io.probedock.rt.client.junit.ProbeRTListener</value>
-			</property>
-		</properties>
-	</configuration>
-</plugin>
+<plugins>
+  <!-- Add the Maven Surefire plugin or adapt its configuration. -->
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.18.1</version>
+    <configuration>
+      <properties>
+        <property>
+          <name>listener</name>
+          <value>io.probedock.rt.client.junit.ProbeRTListener</value>
+        </property>
+      </properties>
+    </configuration>
+  </plugin>
+</plugins>
 ```
 
 If you want to use Probe Dock and Probe Dock RT at the same time, you can configure several listeners in the `maven surefire`

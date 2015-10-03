@@ -46,19 +46,22 @@ plugin.
 the class is missing.
 
 ```xml
-<plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-surefire-plugin</artifactId>
-	<version>2.18.1</version>
-	<configuration>
-		<properties>
-			<property>
-				<name>listener</name>
-				<value>io.probedock.client.junit.ProbeListener,io.probedock.rt.client.junit.ProbeRTListener</value>
-			</property>
-		</properties>
-	</configuration>
-</plugin>
+<plugins>
+  <!-- Add the Maven Surefire plugin or adapt its configuration. -->
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.18.1</version>
+    <configuration>
+      <properties>
+        <property>
+          <name>listener</name>
+          <value>io.probedock.client.junit.ProbeListener,io.probedock.rt.client.junit.ProbeRTListener</value>
+        </property>
+      </properties>
+    </configuration>
+  </plugin>
+</plugins>
 ```
 
 3. Annotate your test classes like the following. If you have already a test runner (Spring, Android, ...) or if you

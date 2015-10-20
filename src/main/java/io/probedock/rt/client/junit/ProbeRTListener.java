@@ -38,6 +38,11 @@ public class ProbeRTListener extends AbstractProbeListener {
     private final Set<String> testFailures = new HashSet<>();
 
     /**
+     * Store the ignored tests to not send them to Probe Dock RT
+     */
+    private final Set<String> testIgnored = new HashSet<>();
+
+    /**
      * Project data
      */
     private String projectApiId;
@@ -110,8 +115,10 @@ public class ProbeRTListener extends AbstractProbeListener {
             return;
         }
 
-        // Detect if the test is in failure
-        if (!testFailures.contains(getFingerprint(description))) {
+        String fingerprint = getFingerprint(description);
+
+        // Detect if the test is in failure and do not send test result when the test is ignored
+        if (!testIgnored.contains(fingerprint) && !testFailures.contains(fingerprint)) {
             rtListener.testResult(
                 createTestResult(getFingerprint(description), description, getMethodAnnotation(description), getClassAnnotation(description), true, null),
                 projectApiId,
@@ -132,6 +139,11 @@ public class ProbeRTListener extends AbstractProbeListener {
         Description description = failure.getDescription();
         String fingerprint = getFingerprint(description);
 
+        // Do not send test result when the test is ignored
+        if (testIgnored.contains(fingerprint)) {
+            return;
+        }
+
         // Register the test in the failures
         testFailures.add(fingerprint);
 
@@ -141,5 +153,28 @@ public class ProbeRTListener extends AbstractProbeListener {
             projectVersion,
             TestResultDataUtils.getCategory(configuration, null, null, getCategory())
         );
+    }
+
+    @Override
+    public void testAssumptionFailure(Failure failure) {
+        super.testAssumptionFailure(failure);
+        registerIgnoredTest(failure.getDescription());
+    }
+
+    @Override
+    public void testIgnored(Description description) throws Exception {
+        super.testIgnored(description);
+        registerIgnoredTest(description);
+    }
+
+    /**
+     * Register an ignored test to not send it to Probe Dock RT
+     *
+     * @param description The description of the test
+     */
+    private void registerIgnoredTest(Description description) {
+        if (rtConfiguration.isEnabled()) {
+            testIgnored.add(getFingerprint(description));
+        }
     }
 }

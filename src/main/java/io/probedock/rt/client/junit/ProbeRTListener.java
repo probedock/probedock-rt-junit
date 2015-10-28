@@ -123,7 +123,7 @@ public class ProbeRTListener extends AbstractProbeListener {
                 createTestResult(getFingerprint(description), description, getMethodAnnotation(description), getClassAnnotation(description), true, null),
                 projectApiId,
                 projectVersion,
-                TestResultDataUtils.getCategory(configuration, null, null, getCategory())
+                TestResultDataUtils.getCategory(description.getTestClass().getPackage().getName(), configuration, null, null, getCategory())
             );
         }
     }
@@ -151,7 +151,7 @@ public class ProbeRTListener extends AbstractProbeListener {
             createTestResult(getFingerprint(description), description, getMethodAnnotation(description), getClassAnnotation(description), false, createAndlogStackTrace(failure)),
             projectApiId,
             projectVersion,
-            TestResultDataUtils.getCategory(configuration, null, null, getCategory())
+            TestResultDataUtils.getCategory(description.getTestClass().getPackage().getName(), configuration, null, null, getCategory())
         );
     }
 

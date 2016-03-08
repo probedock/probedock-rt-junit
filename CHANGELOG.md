@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.3 - March 8, 2016
+
+* Fixed NPE when any exception is raised in @BeforeClass (probably same behavior with @AfterClass)
+
 ## v0.4.2 - March 8, 2016
 
 * Bumped version of Probe Dock RT lib

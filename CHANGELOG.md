@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.2 - March 8, 2016
+
+* Bumped version of Probe Dock RT lib
+
 ## v0.4.1 - November 9, 2015
 
 * Fixed possible NPE with package and bumped lib version

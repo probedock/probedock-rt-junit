@@ -14,7 +14,7 @@
 <dependency>
   <groupId>io.probedock.rt.client</groupId>
   <artifactId>probedock-rt-junit</artifactId>
-  <version>0.4.1</version>
+  <version>0.4.2</version>
   <scope>test</scope>
 </dependency>
 ```
